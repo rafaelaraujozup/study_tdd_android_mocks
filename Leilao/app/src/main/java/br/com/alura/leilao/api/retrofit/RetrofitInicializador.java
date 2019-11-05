@@ -12,7 +12,7 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class RetrofitInicializador {
 
-    private static final String URL_BASE = "http://endereco_ip_da_api/";
+    private static final String URL_BASE = "http://10.211.6.85:8080";
     private final Retrofit retrofit;
 
     public RetrofitInicializador() {
