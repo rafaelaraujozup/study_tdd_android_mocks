@@ -56,7 +56,7 @@ public class ListaLeilaoAdapter extends RecyclerView.Adapter<ListaLeilaoAdapter.
         atualizaLista();
     }
 
-    void atualizaLista() {
+    public void atualizaLista() {
         notifyDataSetChanged();
     }
 
