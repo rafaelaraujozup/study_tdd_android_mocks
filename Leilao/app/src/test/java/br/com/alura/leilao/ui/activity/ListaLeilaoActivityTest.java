@@ -25,41 +25,16 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListaLeilaoActivityTest {
 
     @Mock
-    Context context;
-
-    @Spy
-    private ListaLeilaoAdapter adapter = new ListaLeilaoAdapter(context);
+    private ListaLeilaoAdapter adapter;
 
     @Mock
     private LeilaoWebClient client;
 
-    @Test
-    public void must_updateLeilaoList_WhenCallLeilaoApi() throws InterruptedException {
-        ListaLeilaoActivity activity = new ListaLeilaoActivity();
-        doNothing().when(adapter).atualizaLista();
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                RespostaListener<List<Leilao>> arguments = invocation.getArgument(0);
-                arguments.sucesso(new ArrayList<>(Arrays.asList(
-                        new Leilao("Teste"),
-                        new Leilao("Teste 2")
-                )));
-                return null;
-            }
-        }).when(client).todos(any(RespostaListener.class));
 
-        activity.configuraAdapter();
-        activity.buscaLeiloes(adapter, client);
-        Thread.sleep(2000);
-        int quantidadeLeiloes = adapter.getItemCount();
-
-        assertThat(quantidadeLeiloes, is(2));
-
-    }
 }
